@@ -1,0 +1,13 @@
+corpus_dir: .../gigaspeech2/vi/test
+raw_data: .../gigaspeech2/vi/test.tsv
+datalist_path: .../gigaspeech2/vi/features/test/data.list
+manifest_dir: .../gigaspeech2/vi/features/test/manifests
+fbank_dir: .../gigaspeech2/vi/features/test/fbank
+prefix: gigaspeech2-vi
+partition: test
+suffix: jsonl.gz
+format: .wav
+language: Vietnamese
+num_workers: 20
+batch_duration: 600
+speed_perturb: false

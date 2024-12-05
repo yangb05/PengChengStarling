@@ -1,0 +1,24 @@
+bpe_cuts_dir: /mgData1/yangb/icefall/egs/omini/ASR/data/fbank # the bpe cuts dir
+bpe_cuts: # the cuts used to train bpe model, should be exist before prepare bpe
+ - wenetspeech_cuts_L_2000h_langtag.jsonl.gz
+ - gigaspeech_cuts_L_2000h_langtag.jsonl.gz
+ - vietnamese_cuts_train_2000h_langtag.jsonl.gz
+ - ru-datatang_cuts_train_2000h_langtag.jsonl.gz
+ - reazonspeech_cuts_train_2000h_langtag.jsonl.gz
+ - ar_cuts_train_1527h_langtag.jsonl.gz
+ - gigaspeech2-th_cuts_train_2000h_langtag.jsonl.gz
+ - gigaspeech2-id_cuts_train_2000h_langtag.jsonl.gz
+vocab_size: 16000 # bpe vocab size
+lang_dir: data/multilingual-16000h_bpe_16000_langtag # bpe output dir
+model_type: unigram
+character_coverage: 1.0
+input_sentence_size: 100000000
+langtags: # the langtags should cover all the languages contained in bpe cuts
+ - <ZH>
+ - <EN>
+ - <VI>
+ - <RU>
+ - <JA>
+ - <AR>
+ - <TH>
+ - <ID>

@@ -1,0 +1,16 @@
+# params for making data.list
+corpus_dir: /data_a100/userhome/yangb/data/gigaspeech2/id/train
+raw_data: /data_a100/userhome/yangb/data/gigaspeech2/id/train_refined.tsv
+datalist_path: /data_a100/userhome/yangb/data/gigaspeech2/id/features/train/data.list
+# params for computing fbank
+manifest_dir: /data_a100/userhome/yangb/data/gigaspeech2/id/features/train/manifests
+fbank_dir: /data_a100/userhome/yangb/data/gigaspeech2/id/features/train/fbank
+prefix: gigaspeech2-id
+partition: train
+suffix: jsonl.gz
+format: .wav
+language: Indonesian
+langtag: <ID>
+num_workers: 20
+batch_duration: 600
+speed_perturb: false
