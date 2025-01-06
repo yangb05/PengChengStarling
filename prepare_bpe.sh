@@ -1,0 +1,1 @@
+python zipformer/prepare_bpe.py --config-file config_bpe/example.yaml

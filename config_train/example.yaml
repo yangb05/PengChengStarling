@@ -1,0 +1,146 @@
+# active params: record
+wandb_project: Multilingual_Zipformer
+run_name: multilingual_8asr_16000h_280M_online_langtag
+exp_dir: /mgData1/yangb/icefall/egs/omini/ASR/zipformer/multilingual_8asr_16000h_280M_online_langtag
+# active params: data
+manifest_dir: /mgData1/yangb/icefall/egs/omini/ASR/data/fbank
+train_cuts:
+ - wenetspeech_cuts_L_2000h_langtag.jsonl.gz
+ - gigaspeech_cuts_L_2000h_langtag.jsonl.gz
+ - vietnamese_cuts_train_2000h_langtag.jsonl.gz
+ - ru-datatang_cuts_train_2000h_langtag.jsonl.gz
+ - reazonspeech_cuts_train_2000h_langtag.jsonl.gz
+ - ar_cuts_train_1527h_langtag.jsonl.gz
+ - gigaspeech2-th_cuts_train_2000h_langtag.jsonl.gz
+ - gigaspeech2-id_cuts_train_2000h_langtag.jsonl.gz
+valid_cuts: multilingual_8asr_dev_langtag.jsonl.gz
+test_cuts: 
+ - wenetspeech_cuts_test_meeting.jsonl.gz
+ - reazonspeech_cuts_test.jsonl.gz
+ - gigaspeech2-th_cuts_test.jsonl.gz
+ - gigaspeech_cuts_test.jsonl.gz
+ - gigaspeech2-vi_cuts_test_lowercase.jsonl.gz
+ - ru-datatang_cuts_test.jsonl.gz
+ - mgb2_cuts_test.jsonl.gz
+ - gigaspeech2-id_cuts_test.jsonl.gz
+max_duration: 800
+bpe_model: /mgData1/yangb/icefall/egs/omini/ASR/data/multilingual-16000h_bpe_16000_langtag/bpe.model
+# active params: training
+causal: 1
+num_epochs: 100
+start_epoch: 51
+lr_batches: 40000
+lr_epochs: 1
+base_lr: 0.045
+warm_step: 2000
+master_port: 12354
+# active params: finetuning
+do_finetune: false
+init_modules:
+finetune_base_lr: 0.0001
+finetune_lr_epochs: 100
+finetune_lr_batches: 100000
+finetune_ckpt: /mgData1/yangb/icefall/egs/omini/ASR/zipformer/multilingual_8asr_16000h_280M_online_langtag/pretrained.pt
+# active params: model
+num_encoder_layers: 2,2,4,5,4,2
+feedforward_dim: 512,1024,2048,3072,2048,1024
+encoder_dim: 192,384,768,1024,768,384
+encoder_unmasked_dim: 192,256,320,512,320,256
+# active params: decoding
+lang_dir: /mgData1/yangb/icefall/egs/omini/ASR/data/multilingual-16000h_bpe_16000_langtag # for beam search
+decoding_method: greedy_search
+decoding_chunk_size: "16"
+decoding_left_context_frames: "128"
+num_decode_streams: 2000
+decode_ckpt:  # can be specified while use_averaged_model is false
+use_averaged_model: true
+# default params: record
+best_train_loss: inf
+best_valid_loss: inf
+best_train_epoch: -1
+best_valid_epoch: -1
+batch_idx_train: 0
+log_interval: 100
+reset_interval: 200
+valid_interval: 14000 # For the 100h subset, use 800
+tensorboard: true
+save_every_n: 4000
+keep_last_k: 1
+average_period: 200
+# default params: data
+bucketing_sampler: true
+num_buckets: 30
+concatenate_cuts: false
+duration_factor: 1.0
+gap: 1.0
+on_the_fly_feats: false
+shuffle: true
+drop_last: true
+return_cuts: true
+num_workers: 20
+enable_spec_aug: true
+spec_aug_time_warp_factor: 80
+enable_musan: true
+input_strategy: PrecomputedFeatures
+# default params: model
+downsampling_factor: 1,2,4,8,4,2
+num_heads: 4,4,4,8,4,4
+query_head_dim: "32"
+value_head_dim: "12"
+pos_head_dim: "4"
+pos_dim: 48
+cnn_module_kernel: 31,31,15,15,15,31
+decoder_dim: 512
+joiner_dim: 512
+chunk_size: 16,32,64,-1
+left_context_frames: 64,128,256,-1
+use_transducer: true
+use_ctc: false
+# default params: training
+start_batch: 0
+ref_duration: 600
+use_fp16: true
+feature_dim: 80
+subsampling_factor: 4 # not passed in, this is fixed.
+context_size: 2
+prune_range: 5
+lm_scale: 0.25
+am_scale: 0.0
+simple_loss_scale: 0.5
+ctc_loss_scale: 0.2
+seed: 42
+print_diagnostics: false
+inf_check: false
+# default params: decoding
+iter: 0
+beam_size: 4
+beam: 20.0
+ngram_lm_scale: 0.01
+max_contexts: 8
+max_states: 64
+context_size: 2
+max_sym_per_frame: 1
+num_paths: 200
+nbest_scale: 0.5
+use_shallow_fusion: False
+lm_type: rnn
+lm_scale: 0.3
+tokens_ngram: 2
+backoff_id: 500
+context_score: 2
+context_file: ""
+lm_vocab_size: 500
+lm_epoch: 7
+lm_avg: 1
+lm_exp_dir: None
+rnn_lm_embedding_dim: 2048
+rnn_lm_hidden_dim: 2048
+rnn_lm_num_layers: 3
+rnn_lm_tie_weights: True
+transformer_lm_exp_dir: None
+transformer_lm_dim_feedforward: 2048
+transformer_lm_encoder_dim: 768
+transformer_lm_embedding_dim: 768
+transformer_lm_nhead: 8
+transformer_lm_num_layers: 16
+transformer_lm_tie_weights: True

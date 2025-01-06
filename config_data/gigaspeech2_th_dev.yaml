@@ -1,0 +1,13 @@
+corpus_dir: .../gigaspeech2/th/dev
+raw_data: .../gigaspeech2/th/dev.tsv
+datalist_path: .../gigaspeech2/th/features/dev/data.list
+manifest_dir: .../gigaspeech2/th/features/dev/manifests
+fbank_dir: .../gigaspeech2/th/features/dev/fbank
+prefix: gigaspeech2-th
+partition: dev
+suffix: jsonl.gz
+format: .wav
+language: Thai
+num_workers: 20
+batch_duration: 600
+speed_perturb: false
