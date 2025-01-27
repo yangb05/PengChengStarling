@@ -98,7 +98,7 @@ python zipformer/export-onnx-streaming.py \
 ```
 To deploy the onnx checkpoint, please refer to this [repository](https://github.com/yangb05/sherpa-onnx-multilingual).
 
-
+<!--
 # Citation
 ```bibtex
 @misc{PCLNLP2024PengChengStarling,
@@ -110,5 +110,6 @@ To deploy the onnx checkpoint, please refer to this [repository](https://github.
   note         = {Accessed: 2024-12-10}
 }
 ```
+-->
 
 
