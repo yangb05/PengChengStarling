@@ -96,7 +96,7 @@ python zipformer/export-onnx-streaming.py \
   --avg 15 \
   --config-file config_train/<your_train_config>.yaml
 ```
-To deploy the onnx checkpoint, please refer to this [repository](https://github.com/yangb05/sherpa-onnx-multilingual).
+To deploy the onnx checkpoint, please refer to this [repository](https://github.com/yangb05/sherpa-onnx).
 
 <!--
 # Citation
