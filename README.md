@@ -1,3 +1,6 @@
+# Latest News
+- 🚀 Just released a Docker image for training and deployment.
+
 # Introduction
 
 The PengChengStarling project is a multilingual ASR system development toolkit built upon [the icefall project](https://github.com/k2-fsa/icefall). Compared to the original icefall, it incorporates several task-specific optimizations for ASR. 
@@ -20,6 +23,42 @@ Our model checkpoint is open-sourced on [Hugging Face](https://huggingface.co/st
 # Installation
 
 Please refer to the [document](https://icefall.readthedocs.io/en/latest/installation/index.html) for installation instructions. If the installation test is successful, PengChengStarling is ready for use.
+
+## Docker Image for Training and Deployment
+
+We’ve released a Docker image for training and ONNX deployment. You can pull it using the following command:
+```
+docker pull registry.cn-shanghai.aliyuncs.com/yangb05/ubuntu20.04-cuda11.6.1:pclstarling
+```
+To run the container with all available GPUs, execute:
+```
+docker run --gpus all -it registry.cn-shanghai.aliyuncs.com/yangb05/ubuntu20.04-cuda11.6.1:pclstarling /bin/bash
+```
+This image has been thoroughly tested for ONNX deployment. Before use, generate the required certificates by running:
+```
+sherpa-onnx/python-api-examples/web/generate-certificate.py
+```
+After that, you can start a transducer based streaming ASR service like this:
+```
+export CUDA_VISIBLE_DEVICES=6
+python sherpa-onnx/python-api-examples/streaming_server.py \
+  --encoder encoder-epoch-25-avg-15-chunk-16-left-128.onnx \
+  --decoder decoder-epoch-25-avg-15-chunk-16-left-128.onnx \
+  --joiner joiner-epoch-25-avg-15-chunk-16-left-128.onnx \
+  --tokens tokens.txt \
+  --doc-root sherpa-onnx/python-api-examples/web \
+  --port 50351 \
+  --provider cuda \
+  --certificate sherpa-onnx/python-api-examples/web/cert.pem
+```
+The started ASR service can be tested like this:
+```
+python sherpa-onnx/python-api-examples/online-websocket-client-decode-file-cert.py \
+  --server-addr localhost \
+  --server-port 50351 \
+  test_audio.wav
+```
+We've also provided some examples in `/workspace/sherpa-onnx/checkpoints` for your reference.
 
 # Training
 
